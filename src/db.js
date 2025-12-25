@@ -21,5 +21,3 @@ export async function connectDB() {
   return cached.conn;
 }
 
-console.log("Using Mongo URI starts with:", (process.env.MONGODB_URI || "").slice(0, 25));
-
