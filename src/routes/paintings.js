@@ -9,13 +9,13 @@ import { cloudinary } from "../cloudinary.js";
 export const paintingsRouter = express.Router();
 
 // Public: list paintings
-paintingsRouter.get("/", async (req, res) => {
+paintingsRouter.get("/", authRequired, async (req, res) => {
   const items = await Painting.find().sort({ createdAt: -1 });
   res.json(items);
 });
 
 // Public: get by id
-paintingsRouter.get("/:id", async (req, res) => {
+paintingsRouter.get("/:id", authRequired, async (req, res) => {
   const item = await Painting.findById(req.params.id);
   if (!item) return res.status(404).json({ message: "Not found" });
   res.json(item);
