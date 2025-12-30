@@ -28,10 +28,10 @@ app.use(
   })
 );
 
-// Rate-limit auth a bit
+
 app.use("/api/auth", rateLimit({ windowMs: 60_000, max: 30 }));
 
-// DB connection per request (cached in db.js)
+
 app.use(async (req, res, next) => {
   try {
     await connectDB();
@@ -50,7 +50,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/paintings", paintingsRouter);
 app.use("/api/cloudinary", cloudinaryRouter);
 
-// Error handler LAST
+
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: "Server error" });

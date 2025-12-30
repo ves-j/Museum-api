@@ -8,20 +8,20 @@ import { cloudinary } from "../cloudinary.js";
 
 export const paintingsRouter = express.Router();
 
-// Public: list paintings
+
 paintingsRouter.get("/", authRequired, async (req, res) => {
   const items = await Painting.find().sort({ createdAt: -1 });
   res.json(items);
 });
 
-// Public: get by id
+
 paintingsRouter.get("/:id", authRequired, async (req, res) => {
   const item = await Painting.findById(req.params.id);
   if (!item) return res.status(404).json({ message: "Not found" });
   res.json(item);
 });
 
-// Admin: create painting (for now imageUrl is a plain string; Step 2 will use Cloudinary)
+
 paintingsRouter.post(
   "/",
   authRequired,
@@ -48,7 +48,6 @@ paintingsRouter.post(
   }
 );
 
-// Admin: delete painting
 paintingsRouter.delete(
   "/:id",
   authRequired,

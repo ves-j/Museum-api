@@ -5,7 +5,7 @@ export function authRequired(req, res, next) {
     const header = req.headers.authorization || "";
     const token = header.startsWith("Bearer ") ? header.slice(7) : null;
 
-    // Optional: support cookie token for web later
+
     const cookieToken = req.cookies?.token;
     const finalToken = token || cookieToken;
 

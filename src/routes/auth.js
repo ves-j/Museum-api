@@ -40,7 +40,7 @@ authRouter.post("/register", async (req, res) => {
   return res.status(201).json({ message: "User created", id: user._id });
 });
 
-// Register admin (requires invite code)
+
 authRouter.post("/register-admin", async (req, res) => {
   const schema = registerSchema.extend({
     inviteCode: z.string().min(1)
@@ -65,7 +65,7 @@ authRouter.post("/register-admin", async (req, res) => {
   return res.status(201).json({ message: "Admin created", id: admin._id });
 });
 
-// Login (checks admin first, then user)
+
 authRouter.post("/login", async (req, res) => {
   const schema = z.object({
     email: z.string().email(),
